@@ -2,6 +2,10 @@ require "docking_station"
 require "bike"
 describe DockingStation do
 
+  it "When initialized capacity is 20" do
+    expect(subject.capacity).to eq(20)
+  end
+
   # it "releases a bike" do
   #   expect(subject).to respond_to :release_bike
   # end
@@ -34,10 +38,12 @@ describe DockingStation do
   describe "#dock(bike)" do
     it "raises an error when full" do
       # bike = Bike.new # not needed superceded byline below
-      20.times { subject.dock Bike.new }
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
       expect { subject.dock(Bike.new) }.to raise_error "Docking station full"
     end
 
     # Want to add test that checks the size of the bike_array when we call is n times
   end
+
+
 end
